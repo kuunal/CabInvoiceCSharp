@@ -76,7 +76,6 @@ namespace CabInvoiceTest
         }
 
         [Test]
-
         public void GivenPremiumRide_WhenToCalculateFare_ShouldReturnPremiumFare()
         {
             string userid = "2";
@@ -86,6 +85,19 @@ namespace CabInvoiceTest
             invoiceGenerator.AddUserRides(userid, rides);
             InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceByUserId(userid, RIDETYPE.PREMUIM_RIDE);
             InvoiceSummary invoiceSummary1 = new InvoiceSummary(1, 51);
+            Assert.AreEqual(invoiceSummary, invoiceSummary1);
+        }
+
+        [Test]
+        public void GivenPremiumRide_WhenToCalculateMinimumFare_ShouldReturnPremiumMinimumFare()
+        {
+            string userid = "2";
+            Ride[] rides = {
+            new Ride(0.1,1)
+            };
+            invoiceGenerator.AddUserRides(userid, rides);
+            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceByUserId(userid, RIDETYPE.PREMUIM_RIDE);
+            InvoiceSummary invoiceSummary1 = new InvoiceSummary(1, 20);
             Assert.AreEqual(invoiceSummary, invoiceSummary1);
         }
     }
