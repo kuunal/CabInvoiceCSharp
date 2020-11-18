@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CabInvoice.Exceptions
 {
-    class CabInvoiceExceptions : Exception
+    public class CabInvoiceExceptions : Exception
     {
         public ExceptionEnums.ExceptionType exceptionType;
 
