@@ -7,7 +7,7 @@ namespace CabInvoiceTest
 {
     public class Tests
     {
-        Program program = new Program();
+        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         [SetUp]
         public void Setup()
         {
@@ -16,14 +16,14 @@ namespace CabInvoiceTest
         [Test]
         public void GivenDistanceAndTime_WhenToCalculateFare_ShouldReturnFare()
         {
-            double fare = program.GenerateFare(2, 5);
+            double fare = invoiceGenerator.GenerateFare(2, 5);
             Assert.AreEqual(25, fare);
         }
 
         [Test]
         public void GivenDistanceAndTime_WhenToCalculateMinimumFare_ShouldReturnMinimumFare()
         {
-            double fare = program.GenerateFare(0.1, 1);
+            double fare = invoiceGenerator.GenerateFare(0.1, 1);
             Assert.AreEqual(5, fare);
         }
 
@@ -34,7 +34,7 @@ namespace CabInvoiceTest
             new Ride(2.0,5),
             new Ride(0.1,1)
             };
-            Assert.AreEqual(15, program.GenerateAverageFare(rides));
+            Assert.AreEqual(15, invoiceGenerator.GenerateAverageFare(rides));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace CabInvoiceTest
             new Ride(2.0,5),
             new Ride(0.1,1)
             };
-            InvoiceSummary invoiceSummary = program.GetInvoiceSummary(rides);
+            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(rides);
             InvoiceSummary invoiceSummary1 = new InvoiceSummary(2, 15);
             Assert.AreEqual(invoiceSummary, invoiceSummary1);
         }
@@ -57,28 +57,36 @@ namespace CabInvoiceTest
             new Ride(2.0,5),
             new Ride(0.1,1)
             };
-            program.AddUserRides(userid, rides);
-            InvoiceSummary invoiceSummary = program.GetInvoiceByUserId(userid);
+            invoiceGenerator.AddUserRides(userid, rides);
+            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceByUserId(userid);
             InvoiceSummary invoiceSummary1 = new InvoiceSummary(2, 15);
-            Assert.AreEqual(invoiceSummary, invoiceSummary1);
+            Assert.IsTrue(invoiceSummary.Equals(invoiceSummary1));
         }
 
         [Test]
         public void givenUserId_WhenInCorrect_ShouldThrowNoSuchUserException()
         {
             try { 
-                string userid = "1";
-                Ride[] rides = {
-                new Ride(2.0,5),
-                new Ride(0.1,1)
-                };
-                program.AddUserRides(userid, rides);
-                InvoiceSummary invoiceSummary = program.GetInvoiceByUserId("2");
+                InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceByUserId("4");
                 InvoiceSummary invoiceSummary1 = new InvoiceSummary(2, 15);
                 Assert.AreEqual(invoiceSummary, invoiceSummary1);
             }catch(CabInvoiceExceptions e) {
                 Assert.AreEqual(e.exceptionType, ExceptionEnums.ExceptionType.NO_SUCH_USER);
             }
+        }
+
+        [Test]
+
+        public void GivenPremiumRide_WhenToCalculateFare_ShouldReturnPremiumFare()
+        {
+            string userid = "2";
+            Ride[] rides = {
+            new Ride(3,3)
+            };
+            invoiceGenerator.AddUserRides(userid, rides);
+            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceByUserId(userid, RIDETYPE.PREMUIM_RIDE);
+            InvoiceSummary invoiceSummary1 = new InvoiceSummary(1, 51);
+            Assert.AreEqual(invoiceSummary, invoiceSummary1);
         }
     }
 }
