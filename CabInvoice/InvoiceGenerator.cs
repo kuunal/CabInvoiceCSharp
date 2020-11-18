@@ -1,12 +1,10 @@
-﻿using System;
+﻿using CabInvoice.Enums;
+using System;
 
 namespace CabInvoice
 {
-    public class Program
+    public class InvoiceGenerator
     {
-        const int COST_PER_KILOMETER = 10;
-        const int COST_PER_MINUTE = 1;
-        const int MINIMUM_FARE = 5;
         RideRepository rideRepository = new RideRepository();
 
         static void Main(string[] args)
@@ -14,30 +12,30 @@ namespace CabInvoice
             Console.WriteLine("Hello World!");
         }
 
-        public double GenerateFare(double distance, int time)
+        public double GenerateFare(double distance, int time, RIDETYPE type= RIDETYPE.NORMAL_RIDE)
         {
-            return Math.Max(COST_PER_KILOMETER * distance + time * COST_PER_MINUTE, MINIMUM_FARE);
+            return type.CalculateFare(distance, time);
         }
 
-        public double GenerateAverageFare(Ride[] rides)
+        public double GenerateAverageFare(Ride[] rides, RIDETYPE type = RIDETYPE.NORMAL_RIDE)
         {
             double total = 0;
             foreach(Ride ride in rides)
             {
-                total += GenerateFare(ride.distance, ride.time);
+                total += GenerateFare(ride.distance, ride.time, type);
             }
             return total/rides.Length;
         }
 
-        public InvoiceSummary GetInvoiceSummary(Ride[] rides)
+        public InvoiceSummary GetInvoiceSummary(Ride[] rides, RIDETYPE type = RIDETYPE.NORMAL_RIDE)
         {
-            return new InvoiceSummary(rides.Length, GenerateAverageFare(rides));
+            return new InvoiceSummary(rides.Length, GenerateAverageFare(rides, type));
         }
 
-        public InvoiceSummary GetInvoiceByUserId(string userid)
+        public InvoiceSummary GetInvoiceByUserId(string userid, RIDETYPE type = RIDETYPE.NORMAL_RIDE)
         {
            Ride[] rides = rideRepository.GetRides(userid);
-            return GetInvoiceSummary(rides);
+            return GetInvoiceSummary(rides, type);
         }
 
         public void AddUserRides(string userid, Ride[] ride)
