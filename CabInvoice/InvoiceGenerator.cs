@@ -7,6 +7,7 @@ namespace CabInvoice
         const int COST_PER_KILOMETER = 10;
         const int COST_PER_MINUTE = 1;
         const int MINIMUM_FARE = 5;
+        RideRepository rideRepository = new RideRepository();
 
         static void Main(string[] args)
         {
@@ -31,6 +32,17 @@ namespace CabInvoice
         public InvoiceSummary GetInvoiceSummary(Ride[] rides)
         {
             return new InvoiceSummary(rides.Length, GenerateAverageFare(rides));
+        }
+
+        public InvoiceSummary GetInvoiceByUserId(string userid)
+        {
+           Ride[] rides = rideRepository.GetRides(userid);
+            return GetInvoiceSummary(rides);
+        }
+
+        public void AddUserRides(string userid, Ride[] ride)
+        {
+            rideRepository.AddUser(userid, ride);   
         }
     }
 }
