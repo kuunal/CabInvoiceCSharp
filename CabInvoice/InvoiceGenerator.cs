@@ -27,5 +27,10 @@ namespace CabInvoice
             }
             return total/rides.Length;
         }
+
+        public InvoiceSummary GetInvoiceSummary(Ride[] rides)
+        {
+            return new InvoiceSummary(rides.Length, GenerateAverageFare(rides));
+        }
     }
 }
