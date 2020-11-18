@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabInvoice", "CabInvoice\CabInvoice.csproj", "{DA28602F-8A93-4883-B1DF-A9D9FAF702FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabInvoice", "CabInvoice\CabInvoice.csproj", "{DA28602F-8A93-4883-B1DF-A9D9FAF702FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabInvoiceTest", "CabInvoiceTest\CabInvoiceTest.csproj", "{AD7149E3-C6EC-4A19-91CB-E85EEB042458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DA28602F-8A93-4883-B1DF-A9D9FAF702FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA28602F-8A93-4883-B1DF-A9D9FAF702FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA28602F-8A93-4883-B1DF-A9D9FAF702FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD7149E3-C6EC-4A19-91CB-E85EEB042458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7149E3-C6EC-4A19-91CB-E85EEB042458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7149E3-C6EC-4A19-91CB-E85EEB042458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7149E3-C6EC-4A19-91CB-E85EEB042458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
