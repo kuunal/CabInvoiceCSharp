@@ -1,4 +1,6 @@
 using CabInvoice;
+using CabInvoice.Enums;
+using CabInvoice.Exceptions;
 using NUnit.Framework;
 
 namespace CabInvoiceTest
@@ -56,9 +58,27 @@ namespace CabInvoiceTest
             new Ride(0.1,1)
             };
             program.AddUserRides(userid, rides);
-            InvoiceSummary invoiceSummary = program.GetInvoiceByUserId("2");
+            InvoiceSummary invoiceSummary = program.GetInvoiceByUserId(userid);
             InvoiceSummary invoiceSummary1 = new InvoiceSummary(2, 15);
             Assert.AreEqual(invoiceSummary, invoiceSummary1);
+        }
+
+        [Test]
+        public void givenUserId_WhenInCorrect_ShouldThrowNoSuchUserException()
+        {
+            try { 
+                string userid = "1";
+                Ride[] rides = {
+                new Ride(2.0,5),
+                new Ride(0.1,1)
+                };
+                program.AddUserRides(userid, rides);
+                InvoiceSummary invoiceSummary = program.GetInvoiceByUserId("2");
+                InvoiceSummary invoiceSummary1 = new InvoiceSummary(2, 15);
+                Assert.AreEqual(invoiceSummary, invoiceSummary1);
+            }catch(CabInvoiceExceptions e) {
+                Assert.AreEqual(e.exceptionType, ExceptionEnums.ExceptionType.NO_SUCH_USER);
+            }
         }
     }
 }
