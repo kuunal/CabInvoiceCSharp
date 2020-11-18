@@ -8,7 +8,8 @@ namespace CabInvoice.Enums
     {
         public enum ExceptionType
         {
-            NO_SUCH_USER
+            NO_SUCH_USER,
+            INVALID_RIDE_TYPE
         }
     }
 }
