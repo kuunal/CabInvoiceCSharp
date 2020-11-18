@@ -1,9 +1,11 @@
+using CabInvoice;
 using NUnit.Framework;
 
 namespace CabInvoiceTest
 {
     public class Tests
     {
+        Program program = new Program();
         [SetUp]
         public void Setup()
         {
@@ -12,7 +14,8 @@ namespace CabInvoiceTest
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            double fare = program.GenerateFare(2, 5);
+            Assert.AreEqual(25, fare);
         }
     }
 }
