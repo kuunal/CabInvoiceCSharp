@@ -17,5 +17,15 @@ namespace CabInvoice
         {
             return Math.Max(COST_PER_KILOMETER * distance + time * COST_PER_MINUTE, MINIMUM_FARE);
         }
+
+        public double GenerateAverageFare(Ride[] rides)
+        {
+            double total = 0;
+            foreach(Ride ride in rides)
+            {
+                total += GenerateFare(ride.distance, ride.time);
+            }
+            return total/rides.Length;
+        }
     }
 }
