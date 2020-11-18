@@ -34,5 +34,17 @@ namespace CabInvoiceTest
             };
             Assert.AreEqual(15, program.GenerateAverageFare(rides));
         }
+
+        [Test]
+        public void GivenMultipleRides_WhenToCalculate_ShouldReturnsInvoiceSummary()
+        {
+            Ride[] rides = {
+            new Ride(2.0,5),
+            new Ride(0.1,1)
+            };
+            InvoiceSummary invoiceSummary = program.GetInvoiceSummary(rides);
+            InvoiceSummary invoiceSummary1 = new InvoiceSummary(2, 15);
+            Assert.AreEqual(invoiceSummary, invoiceSummary1);
+        }
     }
 }
