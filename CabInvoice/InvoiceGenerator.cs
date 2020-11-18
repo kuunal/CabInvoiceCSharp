@@ -6,6 +6,7 @@ namespace CabInvoice
     {
         const int COST_PER_KILOMETER = 10;
         const int COST_PER_MINUTE = 1;
+        const int MINIMUM_FARE = 5;
 
         static void Main(string[] args)
         {
@@ -14,7 +15,7 @@ namespace CabInvoice
 
         public double GenerateFare(double distance, int time)
         {
-            return COST_PER_KILOMETER * distance + time * COST_PER_MINUTE;
+            return Math.Max(COST_PER_KILOMETER * distance + time * COST_PER_MINUTE, MINIMUM_FARE);
         }
     }
 }
