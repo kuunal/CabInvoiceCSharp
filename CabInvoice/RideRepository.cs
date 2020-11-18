@@ -9,13 +9,7 @@ namespace CabInvoice
 {
     public class RideRepository
     {
-        //static RideRepository rideRepository = new RideRepository();
         Dictionary<string, List<Ride>> userDict = new Dictionary<string, List<Ride>>();
-
-        //public RideRepository GetRideRepository()
-        //{
-        //    return rideRepository;
-        //}
 
         public void AddUser(string userid, Ride[] rides)
         {
