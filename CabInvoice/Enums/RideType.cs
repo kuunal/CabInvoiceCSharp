@@ -5,12 +5,18 @@ using System.Text;
 
 namespace CabInvoice.Enums
 {
+    /// <summary>
+    /// Types of ride available.
+    /// </summary>
     public enum RIDETYPE
     {
         NORMAL_RIDE,
         PREMUIM_RIDE
     }
 
+    /// <summary>
+    /// Generates fare.
+    /// </summary>
     public static class Fare
     {
         const int NORMAL_COST_PER_KILOMETER = 10;
@@ -21,6 +27,14 @@ namespace CabInvoice.Enums
         const int PREMIUM_COST_PER_MINUTE = 2;
         const int PREMIUM_MINIMUM_FARE = 20;
 
+        /// <summary>
+        /// Calculates the fare based on type of ride.
+        /// </summary>
+        /// <param name="rideType">Type of the ride.</param>
+        /// <param name="distance">The distance in km.</param>
+        /// <param name="time">The time in minutes.</param>
+        /// <returns>Fare generated based on type.</returns>
+        /// <exception cref="CabInvoiceExceptions"></exception>
         public static double CalculateFare(this RIDETYPE rideType, double distance, int time)
         {
             switch (rideType)

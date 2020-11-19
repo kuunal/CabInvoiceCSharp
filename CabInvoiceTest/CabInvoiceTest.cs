@@ -91,7 +91,7 @@ namespace CabInvoiceTest
         [Test]
         public void GivenPremiumRide_WhenToCalculateMinimumFare_ShouldReturnPremiumMinimumFare()
         {
-            string userid = "2";
+            string userid = "10";
             Ride[] rides = {
             new Ride(0.1,1)
             };
