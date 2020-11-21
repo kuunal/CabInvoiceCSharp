@@ -1,10 +1,12 @@
-﻿using CabInvoice.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="CabInvoiceExceptions.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace CabInvoice.Exceptions
 {
+    using CabInvoice.Enums;
+    using System;
+
     public class CabInvoiceExceptions : Exception
     {
         public ExceptionEnums.ExceptionType exceptionType;

@@ -1,10 +1,13 @@
-﻿using CabInvoice.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="RideType.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 
 namespace CabInvoice.Enums
 {
+    using CabInvoice.Exceptions;
+    using System;
+
     /// <summary>
     /// Types of ride available.
     /// </summary>

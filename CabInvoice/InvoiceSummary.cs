@@ -1,24 +1,41 @@
-﻿using CabInvoice;
+﻿// <copyright file="InvoiceSummary.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace CabInvoice
 {
+    using CabInvoice;
+
+    /// <summary>
+    /// Generates invoice summary for given rides
+    /// </summary>
     public class InvoiceSummary
     {
-        int totalRides;
-        double totalFare;
-        double averageFarePerRide;
+        /// <summary>
+        /// The total number of rides
+        /// </summary>
+        private int totalRides;
 
+        /// <summary>
+        /// The total fare
+        /// </summary>
+        private double totalFare;
+
+        /// <summary>
+        /// The average fare per ride
+        /// </summary>
+        private double averageFare;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvoiceSummary"/> class.
         /// </summary>
         /// <param name="totalRides">The total rides.</param>
-        /// <param name="AverageFare">The average fare.</param>
-        public InvoiceSummary(int totalRides, double AverageFare)
+        /// <param name="averageFare">The average fare.</param>
+        public InvoiceSummary(int totalRides, double averageFare)
         {
             this.totalRides = totalRides;
-            this.totalFare = AverageFare*totalRides;
-            this.averageFarePerRide = AverageFare;
+            this.totalFare = averageFare * totalRides;
+            this.averageFare = averageFare;
         }
 
         /// <summary>
@@ -30,12 +47,18 @@ namespace CabInvoice
         /// </returns>
         public override bool Equals(object that)
         {
-            if (this == that)
+            if (this == that) 
+            { 
                 return true;
-            if (this == null)
+            }
+
+            if (this == null) 
+            { 
                 return false;
+            }
+
             InvoiceSummary obj = (InvoiceSummary)that;
-            return this.averageFarePerRide == obj.averageFarePerRide
+            return this.averageFare == obj.averageFare
                 && this.totalFare == obj.totalFare
                 && this.totalRides == obj.totalRides; 
         }
